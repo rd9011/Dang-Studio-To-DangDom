@@ -1,0 +1,72 @@
+# macOS and editor state
+.DS_Store
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Secrets and machine-specific configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.mobileprovision
+
+# Python build and test state
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# The local installation workspace contains third-party source checkouts,
+# virtual environments, model weights, caches, user profiles, and receipts.
+work/
+
+# Generated media and private user content
+outputs/local-video/generated/
+outputs/local-video/generated-frames/
+outputs/local-video/renders/
+outputs/local-video/characters/
+outputs/local-video/character-voices/
+*.mp4
+*.mov
+*.m4v
+*.mkv
+*.avi
+*.webm
+*.wav
+*.flac
+*.aiff
+
+# Model and runtime payloads are installed on the user's Mac, never committed.
+*.safetensors
+*.gguf
+*.ckpt
+*.pt
+*.pth
+*.mlmodelc/
+*.mlpackage/
+models/
+
+# Local build products and downloaded release files
+build/
+dist/
+*.dmg
+*.pkg
+
+# Local run logs and scratch captures
+*.log
+/stdout
+/stderr
+*.partial
+*.part
+*.resume.json
+*.install-receipt.json
