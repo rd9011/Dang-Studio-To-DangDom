@@ -1,0 +1,4 @@
+interface:
+  display_name: "LTX-2.5 Prompt Coach"
+  short_description: "Choose the right LTX workflow and improve video prompts"
+  default_prompt: "Review this video prompt, recommend the best runnable Dang Studio workflow, and explain the highest-value improvements."
