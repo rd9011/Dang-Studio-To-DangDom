@@ -1,0 +1,26 @@
+[project]
+name = "local-character-voice-runtime"
+version = "1.0.0"
+description = "Pinned, isolated runtime dependencies for local Chatterbox Multilingual V3 inference"
+requires-python = "==3.11.*"
+dependencies = [
+    "conformer==0.3.2",
+    "diffusers==0.29.0",
+    "huggingface-hub==1.3.7",
+    "librosa==0.11.0",
+    "numpy==1.26.4",
+    "omegaconf==2.3.0",
+    "pykakasi==2.3.0",
+    "pyloudnorm==0.1.1",
+    "resemble-perth==1.0.1",
+    "s3tokenizer==0.3.0",
+    "safetensors==0.5.3",
+    "setuptools==84.0.0",
+    "spacy-pkuseg==1.0.1",
+    "torch==2.6.0",
+    "torchaudio==2.6.0",
+    "transformers==5.2.0",
+]
+
+[tool.uv]
+package = false
