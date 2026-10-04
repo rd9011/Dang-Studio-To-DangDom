@@ -1,0 +1,32 @@
+diff --git a/packages/ltx-pipelines-mlx/src/ltx_pipelines_mlx/cli.py b/packages/ltx-pipelines-mlx/src/ltx_pipelines_mlx/cli.py
+index df2ad73..8a08eb9 100644
+--- a/packages/ltx-pipelines-mlx/src/ltx_pipelines_mlx/cli.py
++++ b/packages/ltx-pipelines-mlx/src/ltx_pipelines_mlx/cli.py
+@@ -1431,4 +1431,4 @@ def _decode_and_save(
+-    # Load decoders on-demand and decode+save. The source frame rate was
+-    # recorded by _encode_source_video; _decode_and_save_video requires it
+-    # (keyword-only since the v0.14.0 frame_rate audit).
+-    if pipe.source_frame_rate is None:
++    # Load decoders on-demand and decode+save. Retake/Extend inherit the
++    # source frame rate recorded by RetakePipeline._encode_source_video().
++    source_frame_rate = getattr(pipe, "source_frame_rate", None)
++    if source_frame_rate is None:
+@@ -1437 +1437,6 @@ def _decode_and_save(
+-    pipe._decode_and_save_video(video_latent, audio_latent, args.output, frame_rate=pipe.source_frame_rate)
++    pipe._decode_and_save_video(
++        video_latent,
++        audio_latent,
++        args.output,
++        frame_rate=source_frame_rate,
++    )
+diff --git a/packages/ltx-pipelines-mlx/src/ltx_pipelines_mlx/retake.py b/packages/ltx-pipelines-mlx/src/ltx_pipelines_mlx/retake.py
+index fa86b2d..03008b8 100644
+--- a/packages/ltx-pipelines-mlx/src/ltx_pipelines_mlx/retake.py
++++ b/packages/ltx-pipelines-mlx/src/ltx_pipelines_mlx/retake.py
+@@ -96,3 +96,3 @@ class RetakePipeline(BasePipeline):
+-        # Source frame rate, recorded by _encode_source_video so CLI-level
+-        # decode helpers can forward it to _decode_and_save_video without
+-        # re-probing the file.
++        # Retake/Extend derive their output frame rate from the source media.
++        # Keep it after the encoder has been freed so the CLI decoder can pass
++        # the mandatory keyword through without probing the source twice.
